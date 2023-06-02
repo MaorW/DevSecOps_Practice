@@ -100,7 +100,10 @@ sudo du -h -d 1 /var/
 
 ```
 
+# Processes
+```
 
+```
 
 # Package management
 ```
@@ -160,6 +163,13 @@ There's always something that needs to be updated on a system: BIOS, firmware, d
 Decide how often you need to update, or comply with your organization's patching policy to plan, schedule, and apply those updates.
 ```
 
+## Rebooing
+```
+Reboot at least once a month. 
+
+Reboot solves a lot of problems and helps you diagnose hardware problems with minimal effort. Powering off the system occasionally is also good practice, because bringing a system up from a cold boot can identify a lot of hardware problems that might hide on a running system.
+```
+
 
 # [Troubleshooting](https://www.redhat.com/sysadmin/troubleshooting-slow-servers)
 ## Initial login
@@ -177,6 +187,18 @@ This view can be changed by pressing the numeric 1 key, which adds more detail r
 ```
 ![kiku](./top_command.png)
 
-For more info about top click [here](https://www.site24x7.com/learn/linux/top-command.html)
+For more info about top click [here](https://www.site24x7.com/learn/linux/top-command.html).
+
+## Memory
+```
+If you find that during the course of a day your system's memory is drained off, the first thing to check is your logging.
+
+You should also look at swap space if you suspect a memory problem. In this output, my system is idle so the result isn't dramatic. Use the free -m command to check physical and virtual (swap) memory usage
+
+```
+For more info about RAM press [here](https://www.redhat.com/sysadmin/cloud-swap.
+
+
+
 
  
