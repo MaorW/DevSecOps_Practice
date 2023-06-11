@@ -7,6 +7,8 @@
 
 For more resources press [here](https://docs.google.com/spreadsheets/d/1P7U6IOTo2cTElbN8B7llTIu5uA4klXbcMokvnXKrzJ8/edit?usp=sharing)
 
+For exercises press [here](https://github.com/MaorW/devops-exercises/blob/master/topics/linux/README.md#linux-exercises)
+
 # Command-line interface
 ```
 man <command>       # manual (use -k or apropos)
@@ -15,7 +17,7 @@ whereiswhatis <command>
 whoami                 # Who is the user
 ```            
 
-# Navigation and basic files' management
+# Navigation and basic file management
 ```
 cp <source_file> <source_file>  # Copy commands
 ls                              # List
@@ -24,6 +26,9 @@ rm <file_name>                  # remove (-r for directory)
 rmdir <empty_directory_name>    # remove empty directory
 cd	                            # Change the current directory (folder)
 ls	                            # List files in a directory
+ln -s <file-path-you-want-to-point-to> <new-file-path>   # Symbolic link
+ln (original file path) (new file path).                 # Hard link
+
 # dd Convert and copy files. if = Import files. of = Output file
 dd if = /dev/hda of = /dev/hdb
 ```
@@ -107,9 +112,17 @@ sudo du -h -d 1 /var/
 
 # Package management
 ```
+# Debian
 apt-get     # CLI which helps handling packages in Linux debian distribution
 
-yum     # CLI which helps handling packages in Linux RHEL distribution
+# RDHEL
+subscriptio-manager register
+subscriptio-manager attach
+subscriptio-manager repos --disable='*' --enable-repo1
+
+yum install/remove/update <package>     # CLI which helps handling packages in Linux RHEL distribution
+yum repolist all # You may find more repo info on /etc/yum.repos.d
+yum info <pkg-going-to-be-installed>
 ```
 
 # SSH for secure way to remote other machines
@@ -127,6 +140,7 @@ ssh-keygen -t rsa                   # Generates RSA key
 ifconfig -a     # Display all the interfaces. -s displays a short version of your interfaces
 
 ip address      # Show all the ip addresses assosiated on all network devices
+ip a s enp0s3
 
 ip link         # Displays link layer information
 
@@ -136,6 +150,28 @@ nslookup        # Getting information from the DNS server
 
 curl            # Transfer data to/from a server
 
+
+# Network manager - The service that manages the network coneections
+nmcli connection show
+nmcli device show
+nmcli connection add con-name static-connection type ethernet ifname enpls0
+nmcli con mod static-connection ipv4.addresses 10.0.0.1/24
+nmcli con mod static-connection ipv4.gateway 10.0.0.254
+nmcli con mod static-connection ipv4.dns 10.0.0.254
+
+nmcli con mod Wired\ connections \ 1 +ipv4.addresses 10.0.0.1/24
+nmcli con mod Wired\ connections \ 1 ipv4.dns 10.0.0.254
+nmcli con mod Wired\ connections \ 1 +ipv4.dns 8.8.8.8
+
+# DNS records stores on /etc/resolv.conf file
+```
+
+# System units
+```
+systemctl list-unit-files
+systemctl list-units
+systemctl start/restart/status/enable/disable <unit-name>
+systemctl reload <unit-name> # Prefer by restart the unit service
 ```
 
 # System logs
@@ -170,6 +206,15 @@ Reboot at least once a month.
 Reboot solves a lot of problems and helps you diagnose hardware problems with minimal effort. Powering off the system occasionally is also good practice, because bringing a system up from a cold boot can identify a lot of hardware problems that might hide on a running system.
 ```
 
+## Research for a network issues
+```
+Check your other hosts for comparison. Is the problem localized to a single host, is it confined to a single group, or is it system-wide? This check will help you identify whether the problem is local, if it's confined to a single switch, if it affects an entire rack or row, or if the problem is more widespread.
+
+Check your local network configurations. Check changelogs to see if something has recently changed. Next, do a physical check of your NIC. Do the lights look correct to you? Does the cable look good and does the plug appear undamaged? Does the wire configuration look correct? Check the entire length of the cable for physical damage, if possible. Check the physical switch and the cable terminator in the switch for physical defects.
+
+Either check the switch configuration yourself or ask a network admin to do so. Physically check the switch location or refer to your documentation to find the correct port to report to the network admin. If the configuration looks good, have the network admin perform a quick reset on the port. Also, ask the admin about the last switch update and last reboot date.
+```
+
 
 # [Troubleshooting](https://www.redhat.com/sysadmin/troubleshooting-slow-servers)
 ## Initial login
@@ -198,7 +243,29 @@ You should also look at swap space if you suspect a memory problem. In this outp
 ```
 For more info about RAM press [here](https://www.redhat.com/sysadmin/cloud-swap.
 
+##  Network
+```
+Troublshooting Network Issues suppose to be checked by this order:
+Layer 5: Application
+Layer 4: Transport
+Layer 3: Network/Internet
+Layer 2: Data Link
+Layer 1: Physical
 
+Layer 1: The physical layer
+Does our physical interface up? The ip link show command tells us:
+> ip -br link show # ip link show
+
+Before you start checking cables, though, it’s a good idea to make sure that the interface isn’t just disabled. Issuing a command to bring the interface up can rule this problem out:
+
+> ip link set eth0 up
+
+These commands are great for troubleshooting obvious physical issues, but what about more insidious issues? Interfaces can negotiate at the incorrect speed, or collisions and physical layer problems can cause packet loss or corruption that results in costly retransmissions. How do we start troubleshooting those issues?
+
+We can use the -s flag with the ip command to print additional statistics about an interface. The output below shows a mostly clean interface, with only a few dropped receive packets and no other signs of physical layer issues:
+> ip -s link show eth0
+
+```
 
 
  
