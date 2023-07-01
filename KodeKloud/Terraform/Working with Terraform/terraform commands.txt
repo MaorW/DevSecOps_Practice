@@ -1,0 +1,19 @@
+terraform validate
+
+terraform fmt # Help reformat the tf files
+
+terraform show json
+
+terraform providers # Show providers which on the config files
+
+# Copy Provider plugins needed for the current config files into another directory
+terraform providers mirror /root/terraform/new_local_file
+
+terraform output
+terraform output <var_key>
+
+terraform refresh # Sync terraform with the real-world infrastructure
+
+terraform graph # Works with Graphviz pkg
+apt update && apt install graphwiz -y && terraform graph | dot -Tsvg > graph.svg
+
