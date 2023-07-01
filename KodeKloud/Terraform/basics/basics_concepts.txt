@@ -3,3 +3,8 @@
     key1 = value1
     key2 = value2
 }
+
+Providers' type
+1. Official - AWS, GCP, Hashicorp, Azure ...
+2. Partner - 3th party (PAAS) - DidgitalOcean, Heroku, Bigip
+3. Community - Maintained by individual contributors of the Hashicorp community.
