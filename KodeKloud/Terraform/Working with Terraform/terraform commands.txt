@@ -3,6 +3,7 @@ terraform validate
 terraform fmt # Help reformat the tf files
 
 terraform show json
+terraform state show local_file.file
 
 terraform providers # Show providers which on the config files
 
