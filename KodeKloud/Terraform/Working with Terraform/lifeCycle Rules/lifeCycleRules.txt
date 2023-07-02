@@ -1,0 +1,6 @@
+lifeCycle types:
+1. create_before_destroy - Create the resource first and then destroy older
+
+2. prevent_destroy - Prevents destroy of the resource
+
+3. ignore_changes - Ignore changes to resource attributes (specific/all)
