@@ -1,0 +1,19 @@
+##  https://github.com/aws/aws-cli/tree/develop/awscli/examples/iam ##
+
+# AWS CLI command:
+aws iam create-user --user-name lucy
+
+<command> = iam
+<sub-command> = create-user
+<option> = --user-name
+<parameter> = lucy
+
+
+# More AWS CLI commands:
+aws iam list-users
+aws iam attach-user-policy --policy-arn arn:aws:iam:ACCOUNT-ID:aws:policy/AdministratorAccess --user-name Alice
+aws iam create-group --group-name Admins
+aws iam add-user-to-group --user-name Bob --group-name Admins
+
+aws --endpoint http://aws:4566 iam list-attached-group-policies --group-name project-sapphire-developers
+aws --endpoint http://aws:4566 iam list-attached-user-policies --user-name jack
