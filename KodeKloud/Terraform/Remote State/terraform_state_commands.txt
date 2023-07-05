@@ -1,0 +1,12 @@
+# terraform state <subcommand> [options] [args]
+
+Sub-Command:
+list
+mv
+pull
+rm
+show
+
+Examples:
+terraform state show aws_s3_bucket.finance
+terraform list show aws_s3_bucket.finance

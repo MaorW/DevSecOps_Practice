@@ -1,0 +1,4 @@
+Resource                                    Data Source
+Keyword: resource                           Keyword: resource
+Creates, Updates, Destroy infrastructure    Only reads infrastructure
+Also called Manged Resources                Also called Data Resources
